@@ -27,8 +27,8 @@ export const createUser = async(req: Request, res: Response) => {
 
 export const listUsers = async (req: Request, res: Response) => {
     const users = await service.list();
-    res.json(200).json({
-        sucess:true,
+    res.status(200).json({
+        sucess: true,
         data: users
     });
 }
