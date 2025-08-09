@@ -1,10 +1,19 @@
 import * as repo from "./usuario.repository.js";
 import { Usuario } from "@prisma/client";
+import isEmail from "validator/lib/isEmail.js";
 
 export const create = async(data: Omit<Usuario, 'id' | 'createdAt'>) => {
 
     if(data.idade < 1 || data.idade > 120){
         throw new Error("Usuário deve ter entre 1 e 120 anos");
+    }
+
+    if(data.nome.length < 2){
+        throw new Error("Nome: Mínimo 2 caracteres");
+    }
+
+    if(!isEmail.default(data.email)){
+        throw new Error("Email inválido");
     }
 
     const email = await repo.findUserByEmail(data.email);
