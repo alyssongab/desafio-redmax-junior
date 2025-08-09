@@ -22,7 +22,7 @@ export const findUserByEmail = async(email: string) => {
 }
 
 export const deleteUser = async (id: number) => {
-    prisma.usuario.delete({
+    return prisma.usuario.delete({
         where: {id}
     });
 }
