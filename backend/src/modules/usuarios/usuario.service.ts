@@ -15,4 +15,11 @@ export const create = async(data: Omit<Usuario, 'id' | 'createdAt'>) => {
 
 export const list = async() => repo.findAllUsers;
 
-export const remove = async(id: number) => repo.deleteUser(id);
+export const remove = async(id: number) => {
+
+    const user = repo.findUserById(id);
+    if(!user){
+        throw new Error("Usuário não encontrado");
+    }
+    repo.deleteUser(id)
+}
