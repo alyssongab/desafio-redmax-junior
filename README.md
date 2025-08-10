@@ -58,7 +58,8 @@ URL_FRONTEND = "http://localhost:3000"
 
 ```
 > .env.local (frontend)
-API_BASE_URL=http://localhost:3001
+API_URL_INTERNAL=http://localhost:3001
+NEXT_PUBLIC_API_URL_EXTERNAL=http://localhost:3001
 ```
 
 **2. Inicie os Serviços com Docker Compose**
