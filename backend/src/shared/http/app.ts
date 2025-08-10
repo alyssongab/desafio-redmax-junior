@@ -11,6 +11,10 @@ app.use(cors({
     origin: process.env.URL_FRONTEND
 }));
 
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
 app.use('/api', routes);
 
 app.get('/', (req, res) => res.send('API OK'));

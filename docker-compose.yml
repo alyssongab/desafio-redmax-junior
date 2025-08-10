@@ -1,0 +1,32 @@
+
+services:
+  backend:
+    build: ./backend
+    container_name: desafio-backend
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./backend/prisma/banco.db:/app/prisma/banco.db
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: desafio-frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      API_BASE_URL: http://backend:3001
+    depends_on:
+      backend:
+        condition: service_healthy

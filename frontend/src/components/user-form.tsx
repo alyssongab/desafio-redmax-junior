@@ -1,6 +1,7 @@
 'use client';
 
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState } from "react";
+import { useFormStatus } from "react-dom";
 import { useRouter } from "next/navigation";
 import { FormState } from "@/lib/types";
 import { criarUsuario } from "@/lib/userActions";
@@ -21,7 +22,7 @@ function SalvarButton(){
 export function UsuarioForm(){
     const router = useRouter();
     const initialState: FormState = { message: "", errors:undefined };
-    const [state, dispatch] = useFormState(criarUsuario, initialState);
+    const [state, dispatch] = useActionState(criarUsuario, initialState);
 
     return (
            <Card className="max-w-2xl mx-auto">
