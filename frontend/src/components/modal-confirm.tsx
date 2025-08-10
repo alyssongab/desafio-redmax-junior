@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { deletarUsuario } from "@/lib/userActions";
+import { api } from "@/lib/api";
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
 
@@ -11,10 +11,19 @@ export function ConfirmDeleteModal({ id, nome }: { id: number, nome: string }) {
 
   async function handleDelete() {
     setPending(true);
-    await deletarUsuario(id);
-    setPending(false);
-    setOpen(false);
-    router.refresh();
+
+    try{
+      await api.delete(`/api/usuarios/${id}`);
+      setOpen(false);
+      router.refresh();
+    }
+    catch(error: any){
+      console.error("Falha ao deletar usuário: ", error);
+      alert("Não foi possível deletar o usuário. Tente novamente");
+    }
+    finally{
+      setPending(false);
+    }
   }
 
   return (

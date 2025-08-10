@@ -20,7 +20,7 @@ export const createUser = async(req: Request, res: Response) => {
     catch(error: any){
         res.status(400).json({
             success: false,
-            messsage: error.message || "Ocorreu um erro inesperado"
+            message: error.message || "Ocorreu um erro inesperado"
         })
     }
 }
@@ -28,7 +28,7 @@ export const createUser = async(req: Request, res: Response) => {
 export const listUsers = async (req: Request, res: Response) => {
     const users = await service.list();
     res.status(200).json({
-        sucess: true,
+        success: true,
         data: users
     });
 }
@@ -37,10 +37,7 @@ export const deleteUser = async(req: Request, res: Response) => {
     const id = Number(req.params.id);
     try{
         await service.remove(id);
-        res.status(204).json({
-            success: true,
-            message: "Usuário removido com sucesso"
-        });
+        res.status(204).send();
     }
     catch(error: any){
         res.status(400).json({
