@@ -48,6 +48,19 @@ git clone <url-do-seu-repositorio>
 cd desafio-redmax-junior
 ```
 
+**Criar arquivo `.env` (backend) e `.env.local` (frontend) para teste**
+```
+> .env(backend)
+DATABASE_URL="file:./banco.db"
+PORT_BACKEND=3001
+URL_FRONTEND = "http://localhost:3000"
+```
+
+```
+> .env.local (frontend)
+API_BASE_URL=http://localhost:3001
+```
+
 **2. Inicie os Serviços com Docker Compose**
 
 Na raiz do projeto (onde se encontra o arquivo `docker-compose.yml`), execute o seguinte comando. Ele irá construir as imagens do frontend e do backend e iniciar os containers.
