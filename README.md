@@ -88,4 +88,3 @@ A API do backend expõe os seguintes endpoints, todos sob o prefixo `/api`:
 
 - `GET /api/usuarios`: Retorna uma lista de todos os usuários.
 - `POST /api/usuarios`: Cria um novo usuário.
-- `GET /health`: Endpoint de verificação de saúde, usado pelo Docker Compose para garantir que o o serviço está operacional.
