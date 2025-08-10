@@ -10,7 +10,6 @@ import axios from "axios";
 async function listarUsuarios(): Promise<Usuario[] | null> {
   try{
     const response = await api.get<{success: boolean, data: Usuario[]}>('/api/usuarios');
-    console.log("dados da api:", response.data)
     return response.data.data;
   }
   catch(error){
@@ -34,7 +33,7 @@ export default async function ListagemUsuarios(){
         <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle className="text-3xl">Usuários</CardTitle>
           <Button>
-            <Link href="/usuarios/cadastro" className="flex items-center">
+            <Link href="/cadastro" className="flex items-center">
               <PlusCircle className="mr-2 h-4 w-4"/>
               Novo Usuário
             </Link>

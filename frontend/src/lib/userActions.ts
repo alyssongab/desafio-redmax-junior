@@ -14,7 +14,9 @@ export async function criarUsuario(initialState: FormState, form: FormData): Pro
    const errors: FormState['errors'] = {};
 
    if(!nome || nome.trim().length < 2) errors.name = "O nome deve ter pelo menos 2 caracteres";
+
    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = "Insira um email válido";
+   
    if(!idadeStr){
     errors.idade = "Idade é obrigatória"
    } else {
