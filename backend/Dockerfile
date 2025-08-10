@@ -1,6 +1,7 @@
 # instalacao das dependencias do projeto
 FROM node:22.14.0-alpine AS base
 WORKDIR /app
+RUN apk add --no-cache curl
 COPY package*.json ./
 RUN npm install
 
@@ -15,6 +16,7 @@ RUN npm run build
 # prepara imagem para prod
 FROM node:22.14.0-alpine AS production
 WORKDIR /app
+RUN apk add --no-cache curl
 
 COPY --from=base /app/package*.json ./
 RUN npm install --omit=dev
