@@ -6,6 +6,7 @@ import Link from "next/link";
 import { api } from "@/lib/api";
 import { Usuario } from "@/lib/types";
 import axios from "axios";
+import { ConfirmDeleteModal } from "@/components/modal-confirm";
 
 async function listarUsuarios(): Promise<Usuario[] | null> {
   try{
@@ -49,6 +50,7 @@ export default async function ListagemUsuarios(){
                   <TableHead>Nome</TableHead>
                   <TableHead>Email</TableHead>
                   <TableHead>Idade</TableHead>
+                  <TableHead>Ações</TableHead>
                 </TableRow>
               </TableHeader>
 
@@ -59,6 +61,9 @@ export default async function ListagemUsuarios(){
                       <TableCell>{u.nome}</TableCell>
                       <TableCell>{u.email}</TableCell>
                       <TableCell>{u.idade}</TableCell>
+                      <TableCell>
+                        <ConfirmDeleteModal id={u.id} nome={u.nome}/>
+                      </TableCell>
                     </TableRow>
                   ))
                 ) : (

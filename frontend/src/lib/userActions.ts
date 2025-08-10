@@ -16,7 +16,7 @@ export async function criarUsuario(initialState: FormState, form: FormData): Pro
    if(!nome || nome.trim().length < 2) errors.name = "O nome deve ter pelo menos 2 caracteres";
 
    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errors.email = "Insira um email válido";
-   
+
    if(!idadeStr){
     errors.idade = "Idade é obrigatória"
    } else {
@@ -66,4 +66,14 @@ export async function criarUsuario(initialState: FormState, form: FormData): Pro
 
    revalidatePath('/');
    redirect('/');
+}
+
+export async function deletarUsuario(id: number){
+    try{
+        await api.delete(`/api/usuarios/${id}`);
+    }
+    catch(error){
+        throw error;
+    }
+
 }
